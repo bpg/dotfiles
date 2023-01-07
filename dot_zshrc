@@ -97,7 +97,6 @@ plugins=(
     helm
     kubectl
     macos
-    microk8s
     mvn
     node
     npm
