@@ -10,7 +10,5 @@ Inspired by https://github.com/Allaman/dots
 and initialize chezmoi with this repository.
 
 ```sh
-wget -q https://raw.githubusercontent.com/bpg/dotfiles/main/bootstrap.sh -O /tmp/bootstrap.sh
-chmod +x /tmp/bootstrap.sh
-bash -c /tmp/./bootstrap.sh
+ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/bpg/dotfiles/main/bootstrap.sh)"
 ```

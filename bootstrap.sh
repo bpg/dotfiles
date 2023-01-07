@@ -37,10 +37,14 @@ get_os () {
 get_homebrew() {
   log "Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  echo '# Set PATH, MANPATH, etc., for Homebrew.' >> $HOME/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 get_tools() {
-  brew install git wget curl jq chezmoi age
+  brew install git wget curl jq chezmoi age iterm2
+  echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> $HOME/.zshrc
 }  
 
 run_chezmoi() {
