@@ -1,8 +1,7 @@
 [user]
     name = Pavel Boldyrev
     email = 627562+bpg@users.noreply.github.com
-	signingkey = FF6D9CF2384D3C728B62DE0602A24794ADAC7455
-    #signingkey = 5B3B92B11A18817A
+    signingkey = FF6D9CF2384D3C728B62DE0602A24794ADAC7455
 [core]
     editor = nvim
     autocrlf = input
@@ -17,22 +16,22 @@
     br = !git branch -vv --color | egrep --color 'gone|$'
 
     # deletes all branches that are "gone" and fully merged with master
-    dm = !bash -c '        REMOTE=$1 &&         REMOTE=${REMOTE:=origin} &&         echo Fetching $REMOTE &&         git fetch $REMOTE --prune  &&         git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -d' -
+    dm = !bash -c 'REMOTE=$1 && REMOTE=${REMOTE:=origin} && echo Fetching $REMOTE && git fetch $REMOTE --prune && git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -d' -
 
     # force deletes all branches that are "gone" (which may not be merged with master yet)
-    ddm = !bash -c '        REMOTE=$1 &&         REMOTE=${REMOTE:=origin} &&         echo Fetching $REMOTE &&         git fetch $REMOTE --prune  &&         git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -D' -
+    ddm = !bash -c 'REMOTE=$1 && REMOTE=${REMOTE:=origin} && echo Fetching $REMOTE && git fetch $REMOTE --prune && git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -D' -
 [diff]
     tool = vscode
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-  tool = vscode
+    tool = vscode
 [mergetool "vscode"]
-  cmd = code --wait $MERGED
+    cmd = code --wait $MERGED
 [gpg]
     program = /opt/homebrew/bin/gpg
 [commit]
-	gpgsign = true
+    gpgsign = true
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -41,8 +40,8 @@
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
 [tag]
-	gpgSign = true
+    gpgSign = true
 [pull]
-	rebase = true
+    rebase = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
