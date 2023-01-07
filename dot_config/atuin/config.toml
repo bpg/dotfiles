@@ -10,7 +10,7 @@
 # session_path = "~/.key"
 
 ## date format used, either "us" or "uk"
-# dialect = "uk" 								
+dialect = "us" 								
 
 ## enable or disable automatic sync
 # auto_sync = true
@@ -32,7 +32,7 @@
 
 ## which style to use
 ## possible values: auto, full, compact
-#style = "auto"
+style = "compact"
 
 ## what to do when the escape key is pressed when searching
 ## possible values: return-original, return-query
