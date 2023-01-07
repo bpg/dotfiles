@@ -1,0 +1,48 @@
+[user]
+    name = Pavel Boldyrev
+    email = 627562+bpg@users.noreply.github.com
+	signingkey = FF6D9CF2384D3C728B62DE0602A24794ADAC7455
+    #signingkey = 5B3B92B11A18817A
+[core]
+    editor = nvim
+    autocrlf = input
+[alias]
+    # shows beautified git log for the current branch, with commit tree structure
+    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+
+    # shows beautified git log  with commit tree structure, but for all branches
+    lga = !git lg --all
+
+    # shows all local branches and mark those that do not exist on remote as "gone"
+    br = !git branch -vv --color | egrep --color 'gone|$'
+
+    # deletes all branches that are "gone" and fully merged with master
+    dm = !bash -c '        REMOTE=$1 &&         REMOTE=${REMOTE:=origin} &&         echo Fetching $REMOTE &&         git fetch $REMOTE --prune  &&         git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -d' -
+
+    # force deletes all branches that are "gone" (which may not be merged with master yet)
+    ddm = !bash -c '        REMOTE=$1 &&         REMOTE=${REMOTE:=origin} &&         echo Fetching $REMOTE &&         git fetch $REMOTE --prune  &&         git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -D' -
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+[gpg]
+    program = /opt/homebrew/bin/gpg
+[commit]
+	gpgsign = true
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[url "ssh://git@github.com"]
+    insteadOf = https://github.com
+[tag]
+	gpgSign = true
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
