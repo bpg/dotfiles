@@ -34,27 +34,14 @@ get_os () {
   fi
 }
 
-check_available_tool() {
-  command -v "$1" >/dev/null 2>&1 || { echo >&2 "require foo"; exit 1; }
+get_homebrew() {
+  log "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
-get_chezmoi() {
-  log "Get chezmoi"
-  wget -q "https://github.com/twpayne/chezmoi/releases/download/v2.29.1/chezmoi-${OS}-${ARCH}" -O "$USER_BIN/chezmoi"
-  chmod +x "$USER_BIN/chezmoi"
-}
-
-get_age() {
-  log "Get age"
-  # TODO: gunzip and tar might not be available...
-  wget -q https://github.com/FiloSottile/age/releases/download/v1.1.1/age-v1.1.1-${OS}-${ARCH}.tar.gz -O /tmp/age.tar.gz
-  gunzip /tmp/age.tar.gz
-  tar -xC /tmp -f /tmp/age.tar
-  mv /tmp/age/age* "$USER_BIN/"
-  chmod +x "$USER_BIN/age"
-  chmod +x "$USER_BIN/age-keygen"
-  rm -r /tmp/age*
-}
+get_tools() {
+  brew install git wget curl jq chezmoi age
+}  
 
 run_chezmoi() {
   log "Running chezmoi"
@@ -62,14 +49,15 @@ run_chezmoi() {
 }
 
 main() {
+  get_arch
+  get_os
+  get_homebrew
+  get_tools
   for program in wget gunzip tar command chmod rm printf mv mkdir; do
     command -v "$program" > /dev/null 2>&1 || { echo "Not found: $program"; exit 1; }
   done
-  get_arch
-  get_os
+  
   mkdir -p "${USER_BIN}"
-  command -v chezmoi >/dev/null 2>&1 || get_chezmoi
-  command -v age >/dev/null 2>&1 || get_age
   export PATH=~/.local/bin/:$PATH
   run_chezmoi
   log "Dotfiles configured!"
