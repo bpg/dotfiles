@@ -1,6 +1,6 @@
 # Dotfiles
 
-My [dotfiles](https://wiki.archlinux.org/title/Dotfiles) for `macOS`.
+My [dotfiles](https://wiki.archlinux.org/title/Dotfiles) for `macOS` (and possibly Linux).
 
 Inspired by https://github.com/Allaman/dots
 
@@ -10,7 +10,7 @@ Inspired by https://github.com/Allaman/dots
 and initialize chezmoi with this repository.
 
 ```sh
-wget -q https://raw.githubusercontent.com/Allaman/dots/main/bootstrap.sh -O /tmp/bootstrap.sh
+wget -q https://raw.githubusercontent.com/bpg/dotfiles/main/bootstrap.sh -O /tmp/bootstrap.sh
 chmod +x /tmp/bootstrap.sh
 bash -c /tmp/./bootstrap.sh
 ```
