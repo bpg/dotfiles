@@ -43,13 +43,13 @@ get_homebrew() {
 }
 
 get_tools() {
-  brew install git wget curl jq chezmoi age iterm2
+  brew install git wget curl chezmoi age
   echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> $HOME/.zshrc
 }  
 
 run_chezmoi() {
   log "Running chezmoi"
-  chezmoi init --apply git@github.com:bpg/dotfiles.git
+  chezmoi init --apply https://github.com/bpg/dotfiles.git
 }
 
 main() {
@@ -64,7 +64,7 @@ main() {
   mkdir -p "${USER_BIN}"
   export PATH=~/.local/bin/:$PATH
   run_chezmoi
-  log "Dotfiles configured!"
+  log "Dotfiles configured!\nRun `brew bundle` to install all the things!"
 }
 
 main
