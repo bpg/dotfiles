@@ -64,7 +64,7 @@ main() {
   mkdir -p "${USER_BIN}"
   export PATH=~/.local/bin/:$PATH
   run_chezmoi
-  log "Dotfiles configured!\nRun `brew bundle` to install all the things!"
+  log "Dotfiles configured!\nRun `brew bundle --global` to install all the things!"
 }
 
 main
