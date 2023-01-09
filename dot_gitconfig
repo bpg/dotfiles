@@ -20,10 +20,12 @@
 
     # force deletes all branches that are "gone" (which may not be merged with master yet)
     ddm = !bash -c 'REMOTE=$1 && REMOTE=${REMOTE:=origin} && echo Fetching $REMOTE && git fetch $REMOTE --prune && git branch -vv | grep gone] | awk \"{ print \\$1 }\" | xargs git branch -D' -
+[difftool]
+    prompt = true
 [diff]
-    tool = vscode
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
     tool = vscode
 [mergetool "vscode"]
