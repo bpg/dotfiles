@@ -176,3 +176,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 eval "$(atuin init zsh)"
 
+source /Users/pasha/.config/op/plugins.sh

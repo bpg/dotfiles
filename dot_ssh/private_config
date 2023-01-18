@@ -1,8 +1,13 @@
-Host *
-  UseKeychain yes
-  AddKeysToAgent yes
-
 Host github.com
-  IdentityFile ~/.ssh/id_rsa
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  IdentityFile ~/.ssh/id_rsa.pub
   IdentitiesOnly yes
 
+Host 10.*
+  StrictHostKeyChecking no
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  UserKnownHostsFile /dev/null  
+
+Host monster
+  HostName monster.boldyrev.me
+  User root
